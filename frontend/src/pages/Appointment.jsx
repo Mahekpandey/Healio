@@ -10,11 +10,34 @@ const Appointment = () => {
   const [docSlots,setDocSlots] = useState([])
   const [slotIndex,setSlotIndex] = useState(0)
   const [slotTime,setSlotTime]= useContext('')
+
   const fetchDocInfo = async () => {
     const docInfo = doctors.find(doc => doc._id == docId);
     setDocInfo(docInfo);
-    console.log(docInfo);
+   
   };
+
+  const getAvailaibleSlots = async () =>{
+    setDocSlots([])
+
+    //getting currentdate//
+    let today = new Date()
+    for(let i =0 ;i<7;i++){
+      //getting date with index//
+      let currentDate = new Date(today)
+      currentDate.setDate(today.getDate()+i)
+      //setting and times of the date with index
+      let endTime = new Date()
+      endTime.setDate(today.getDate()+1)
+      endTime.setHours(21,0,0,0)
+
+      //setting hours
+
+    }
+  }
+  useEffect(()=>{
+    getAvailaibleSlots
+  },[docInfo])
 
   useEffect(() => {
     fetchDocInfo();
